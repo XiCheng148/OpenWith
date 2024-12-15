@@ -21,6 +21,7 @@ let project = Project(
             deploymentTargets: .macOS("14.0"),
             infoPlist: .extendingDefault(with: infoPlist),
             sources: ["OpenWith/Sources/**"],
+            resources: ["OpenWith/Resources/**"],
             dependencies: []
         ),
         .target(
@@ -30,7 +31,7 @@ let project = Project(
             bundleId: "io.tuist.OpenWithTests",
             infoPlist: .default,
             sources: ["OpenWith/Tests/**"],
-            resources: [],
+            resources: ["OpenWith/Resources/**"],
             dependencies: [.target(name: "OpenWith")]
         ),
     ]
