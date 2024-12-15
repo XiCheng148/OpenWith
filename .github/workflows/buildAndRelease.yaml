@@ -40,8 +40,8 @@ jobs:
       - name: Build App
         run: |
           xcodebuild \
-            -workspace OpenWhit.xcworkspace \
-            -scheme OpenWhit \
+            -workspace OpenWith.xcworkspace \
+            -scheme OpenWith \
             -configuration Release \
             -derivedDataPath ./DerivedData \
             -arch arm64 -arch x86_64 \
@@ -51,22 +51,22 @@ jobs:
         run: |
           brew install create-dmg
           create-dmg \
-            --volname "OpenWhit" \
+            --volname "OpenWith" \
             --window-size 500 300 \
             --app-drop-link 350 150 \
-            "OpenWhit.dmg" \
-            "DerivedData/Build/Products/Release/OpenWhit.app"
+            "OpenWith.dmg" \
+            "DerivedData/Build/Products/Release/OpenWith.app"
       
       - name: Create Source Archives
         run: |
-          zip -r "OpenWhit-${{ github.ref_name }}-src.zip" . \
+          zip -r "OpenWith-${{ github.ref_name }}-src.zip" . \
             -x "*.git*" -x "build/*" -x "*.xcodeproj/*" -x "*.xcworkspace/*" -x "*.dmg" -x "DerivedData/*"
       
       # - name: Generate Checksums
       #   run: |
       #     echo "### Checksums" > checksums.txt
       #     echo "\`\`\`" >> checksums.txt
-      #     shasum -a 256 OpenWhit.dmg "OpenWhit-${{ github.ref_name }}-src.zip" >> checksums.txt
+      #     shasum -a 256 OpenWith.dmg "OpenWith-${{ github.ref_name }}-src.zip" >> checksums.txt
       #     echo "\`\`\`" >> checksums.txt
       
       - name: Release
@@ -74,8 +74,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            OpenWhit.dmg
-            # OpenWhit-${{ github.ref_name }}-src.zip
+            OpenWith.dmg
+            # OpenWith-${{ github.ref_name }}-src.zip
             # checksums.txt
           # body_path: checksums.txt
           draft: false
