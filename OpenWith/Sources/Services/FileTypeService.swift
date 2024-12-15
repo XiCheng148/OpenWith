@@ -155,7 +155,7 @@ class FileTypeService: FileTypeServiceProtocol {
         let extensions = utType.tags[.filenameExtension] ?? []
         var fileTypes: [FileTypeInfo] = []
         
-        // 创建扩展名到 UTType 的映射，用于合并相���类型
+        // 创建扩展名到 UTType 的映射，用于合并相同类型
         var extensionToUTType: [String: UTType] = [:]
         
         // 为每个扩展名获取其专属的 UTType

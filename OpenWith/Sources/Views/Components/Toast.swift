@@ -2,6 +2,7 @@ import SwiftUI
 
 struct Toast: View {
     let message: String
+    let isShowing: Bool
     
     var body: some View {
         Text(message)
@@ -11,12 +12,10 @@ struct Toast: View {
             .padding(.vertical, 8)
             .background {
                 Capsule()
-                    .fill(Color.black.opacity(0.8))
+                    .fill(Color.black.opacity(0.75))
             }
-            .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+            .opacity(isShowing ? 1 : 0)
+            .scaleEffect(isShowing ? 1 : 0.8)
+            .animation(.spring(response: 0.3), value: isShowing)
     }
-}
-
-#Preview {
-    Toast(message: "这是一条测试消息")
-}
+} 

@@ -41,7 +41,9 @@ struct FileTypeListView: View {
                     },
                     onRemove: {
                         Task {
+                            showToast("正在移除文件类型...")
                             await viewModel.removeFileTypes([fileType], from: viewModel.selectedApp!)
+                            showToast("已成功移除文件类型")
                         }
                     }
                 )
@@ -154,8 +156,10 @@ struct FileTypeListView: View {
                         if !selectedFileTypes.isEmpty {
                             Button(role: .destructive) {
                                 Task {
+                                    showToast("正在移除文件类型...")
                                     await viewModel.removeFileTypes(selectedFileTypes, from: app)
                                     selectedFileTypes.removeAll()
+                                    showToast("已成功移除文件类型")
                                 }
                             } label: {
                                 HStack(spacing: 4) {
@@ -197,6 +201,10 @@ struct FileTypeListView: View {
                     }
                 }
             }
+        }
+        .overlay(alignment: .bottom) {
+            Toast(message: toastMessage, isShowing: showToast)
+                .padding(.bottom, 60) // 确保不会被底部工具栏遮挡
         }
     }
 }
