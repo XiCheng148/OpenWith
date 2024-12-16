@@ -185,7 +185,7 @@ struct FileTypeListView: View {
                 .background(.bar)
             } else {
                 ContentUnavailableView {
-                    Label("选择一个应用", systemImage: "app.badge.plus")
+                    Label("选择一个应用", systemImage: "plus.app")
                 } description: {
                     Text("从左侧列表选择一个应用来管理其文件类型关联")
                 }
